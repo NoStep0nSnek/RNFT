@@ -1,4 +1,16 @@
-ector<float> get_frequencies(vector<float> vec, int SR){
+#include <iostream>
+#include <fstream>
+#include <cmath>
+#include <complex> 
+#include <vector>
+
+#define SR 8000 // Sample rate, in hertz. Should be at least 4x as much as the frequency
+
+using namespace std;
+const float pi = M_PI; 
+const float tau = 2*M_PI; 
+
+vector<float> get_frequencies(vector<float> vec, int SR){
     // records index of crests
     vector<float> crests;
 
@@ -43,4 +55,11 @@ ector<float> get_frequencies(vector<float> vec, int SR){
     }
 
     return frequencies;
+}
+
+
+int main()
+{
+    vector<float> wave = generate_sine_wave(300, 500, 0, 1000, 1);
+    vector<float> frequencies = 
 }
