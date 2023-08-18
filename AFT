@@ -1,0 +1,46 @@
+ector<float> get_frequencies(vector<float> vec, int SR){
+    // records index of crests
+    vector<float> crests;
+
+    
+    for (int i = 0; i < vec.size(); i++) {
+        if (vec[i - 1] < vec[i] && vec[i + 1] < vec[i]) {
+            crests.push_back(i);
+        }
+    }
+
+    vector<float> frequencies;
+    int integral = 100;
+
+    int rate = 1;
+
+    /*if (crests.size() > 1) {
+        for (int i = 0; i < vec.size()/integral; i++) {
+            float freq;
+            //for (int j = 0; j < integral; j++) {
+                for (int k = 0; k < crests.size(); k++) {
+                    if (crests[k] > (i * integral) && crests[k] < (i * integral) + integral) {
+                        if (k == crests.size() - 1) {
+                            freq = (rate / abs((crests[k - 1] - crests[k])));
+                        } else {
+                            freq = (rate / abs((crests[k] - crests[k + 1])));
+                        }
+                    }
+                }
+            //}
+            frequencies.push_back(freq);
+        }
+    }*/
+
+    if (crests.size() > 0) {
+        for (int i = 0; i < crests.size(); i++) {
+            if (i == crests.size() - 1) {
+                frequencies.push_back(SR / abs((crests[i - 1] - crests[i])));
+            } else {
+                frequencies.push_back(SR / abs((crests[i] - crests[i + 1])));
+            }
+        }
+    }
+
+    return frequencies;
+}
